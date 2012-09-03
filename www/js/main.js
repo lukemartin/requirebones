@@ -16,11 +16,15 @@ require.config({
 		jquery: 'lib/jquery',
 		underscore: 'lib/underscore',
 		backbone: 'lib/backbone',
-		templates: '../templates',
+		templates: '../templates'
 	},
 	urlArgs: 'bust=' + (new Date()).getTime()
 });
 
-define(['app'], function() {
+define(['jquery', 'underscore', 'backbone', 'app'], function ($, _, Backbone, App) {
 
+	'use strict';
+
+	var app = new App();
+	Backbone.history.start();
 });
