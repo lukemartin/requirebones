@@ -8,7 +8,8 @@ define([
 
 	var App = Backbone.Router.extend({
 		routes: {
-			'': 'home'
+			'': 'home',
+			'about': 'about'
 		},
 
 		initialize: function () {
@@ -20,8 +21,18 @@ define([
 
 			require(['views/home/main'], function (HomeMainView) {
 				var homeMainView = new HomeMainView();
-				
+
 				$('#content').html(homeMainView.render().el);
+			});
+		},
+
+		about: function () {
+			console.log('about');
+
+			require(['views/about/main'], function (AboutMainView) {
+				var aboutMainView = new AboutMainView();
+
+				$('#content').html(aboutMainView.render().el);
 			});
 		}
 	});
