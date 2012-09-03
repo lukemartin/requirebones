@@ -20,6 +20,8 @@ define([
 
 			require(['views/home/main'], function (HomeMainView) {
 				var homeMainView = new HomeMainView();
+				
+				$('#content').html(homeMainView.render().el);
 			});
 		}
 	});

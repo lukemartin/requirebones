@@ -16,6 +16,7 @@ require.config({
 		jquery: 'lib/jquery',
 		underscore: 'lib/underscore',
 		backbone: 'lib/backbone',
+		text: 'lib/text',
 		templates: '../templates'
 	},
 	urlArgs: 'bust=' + (new Date()).getTime()
@@ -27,4 +28,5 @@ define(['jquery', 'underscore', 'backbone', 'app'], function ($, _, Backbone, Ap
 
 	var app = new App();
 	Backbone.history.start();
+
 });

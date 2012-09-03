@@ -1,8 +1,9 @@
 define([
 	'jquery',
 	'underscore',
-	'backbone'
-], function ($, _, Backbone) {
+	'backbone',
+	'text!templates/home/main.html'
+], function ($, _, Backbone, homeMainTemplate) {
 
 	'use strict';
 
@@ -10,6 +11,12 @@ define([
 
 		initialize: function () {
 			console.log('home main view init');
+		},
+
+		render: function () {
+			$(this.el).html(homeMainTemplate);
+			
+			return this;
 		}
 	});
 
