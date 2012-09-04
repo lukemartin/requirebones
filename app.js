@@ -22,8 +22,56 @@
 		app.use(express.errorHandler({ dumpExceptions: true, showStack: true}));
 	});
 
+	// Schema
+	var Schema = mongoose.Schema;
+
+	var Contact = new Schema({
+		name: { type: String, required: true },
+		phone: String,
+		client: Boolean,
+		supplier: Boolean,
+		comments: String,
+		modified: { type: Date, default: Date.now }
+	});
+
+	var ContactModel = mongoose.model('Contact', Contact);
+
+	// Routes
 	app.get('/api', function (req, res) {
 		res.send('API is running');
+	});
+
+	app.get('/api/contacts', function (req, res) {
+		return ContactModel.find(function (err, contacts) {
+			if (!err) {
+				return res.send(contacts);
+			} else {
+				return console.log(err);
+			}
+		});
+	});
+
+	app.post('/api/contacts', function (req, res) {
+		var contact;
+		console.log("POST: ");
+		console.log(req.body);
+		contact = new ContactModel({
+			name: req.body.name,
+			phone: req.body.phone,
+			client: req.body.client,
+			supplier: req.body.supplier,
+			comments: req.body.comments
+		});
+
+		contact.save(function (err) {
+			if (!err) {
+				return console.log('created');
+			} else {
+				return console.log(err);
+			}
+		});
+
+		return res.send(contact);
 	});
 
 	app.listen(3000);
