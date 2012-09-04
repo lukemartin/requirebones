@@ -5,6 +5,7 @@ define([
 	'use strict';
 
 	var Transitions = function ($el) {
+
 		$el = $el || $('#content');
 
 		function alpha(html, callback) {
@@ -31,6 +32,7 @@ define([
 			alpha: alpha,
 			slide: slide
 		};
+		
 	};
 
 	return Transitions;

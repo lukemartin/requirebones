@@ -2,12 +2,14 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'transitions'
-], function ($, _, Backbone, Transitions) {
+	'transitions',
+	'views/misc/navItems'
+], function ($, _, Backbone, Transitions, NavItemsView) {
 
 	'use strict';
 
 	var App = Backbone.Router.extend({
+
 		routes: {
 			'': 'home',
 			'about': 'about'
@@ -16,6 +18,8 @@ define([
 		initialize: function () {
 			console.log('router init');
 			this.transitions = new Transitions();
+			this.navItemsView = new NavItemsView();
+			$('#nav').html(this.navItemsView.render().el);
 		},
 
 		home: function () {
@@ -29,8 +33,8 @@ define([
 					var bob = new Transitions($('h1'));
 					bob.slide('Welcome!');
 				});
-
 			});
+			this.navItemsView.select('home');
 		},
 
 		about: function () {
@@ -42,7 +46,9 @@ define([
 
 				self.transitions.slide(aboutMainView.render().el);
 			});
+			this.navItemsView.select('about');
 		}
+
 	});
 
 	return App;
