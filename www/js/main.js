@@ -18,6 +18,7 @@ require.config({
 		backbone: 'lib/backbone',
 		bootstrap: 'lib/bootstrap',
 		text: 'lib/text',
+		transitions: 'lib/transitions',
 		templates: '../templates'
 	},
 	urlArgs: 'bust=' + (new Date()).getTime()

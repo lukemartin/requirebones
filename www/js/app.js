@@ -1,8 +1,9 @@
 define([
 	'jquery',
 	'underscore',
-	'backbone'
-], function ($, _, Backbone) {
+	'backbone',
+	'transitions'
+], function ($, _, Backbone, Transitions) {
 
 	'use strict';
 
@@ -14,25 +15,32 @@ define([
 
 		initialize: function () {
 			console.log('router init');
+			this.transitions = new Transitions();
 		},
 
 		home: function () {
 			console.log('home');
+			var self = this;
 
 			require(['views/home/main'], function (HomeMainView) {
 				var homeMainView = new HomeMainView();
 
-				$('#content').html(homeMainView.render().el);
+				self.transitions.alpha(homeMainView.render().el, function () {
+					var bob = new Transitions($('h1'));
+					bob.slide('Welcome!');
+				});
+
 			});
 		},
 
 		about: function () {
 			console.log('about');
+			var self = this;
 
 			require(['views/about/main'], function (AboutMainView) {
 				var aboutMainView = new AboutMainView();
 
-				$('#content').html(aboutMainView.render().el);
+				self.transitions.slide(aboutMainView.render().el);
 			});
 		}
 	});
