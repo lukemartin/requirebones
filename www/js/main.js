@@ -29,11 +29,12 @@ define(['jquery', 'underscore', 'backbone', 'app', 'bootstrap'], function ($, _,
 	'use strict';
 
 	var app = new App();
-	Backbone.history.start({pushState: true});
-	
+	Backbone.history.start(/*{pushState: true}*/);
+	/*
 	$('.nav a[href]').live('click', function (e) {
 		e.preventDefault();
 
 		app.navigate($(this).attr('href'), true);
 	});
+	*/
 });
