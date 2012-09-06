@@ -2,8 +2,9 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
+	'views/home/contactsList',
 	'text!templates/home/main.html'
-], function ($, _, Backbone, homeMainTemplate) {
+], function ($, _, Backbone, ContactsListView, homeMainTemplate) {
 
 	'use strict';
 
@@ -14,8 +15,8 @@ define([
 		},
 
 		render: function () {
-			$(this.el).html(homeMainTemplate);
-			
+			var contactsList = new ContactsListView();
+			$(this.el).html(homeMainTemplate).append(contactsList.render().el);
 			return this;
 		}
 	});
