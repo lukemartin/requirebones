@@ -69,6 +69,17 @@
 		return res.send(todo);
 	});
 
+	app.delete('/api/todos/:id', function (req, res) {
+		return TodoModel.findById(req.params.id, function (err, todo) {
+			return todo.remove(function (err) {
+				if (!err) {
+					console.log('removed');
+					return res.send('');
+				}
+			});
+		});
+	});
+
 	app.listen(3000);
 
 })();

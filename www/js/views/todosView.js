@@ -12,15 +12,32 @@ define([
 
 	var TodosView = Backbone.View.extend({
 
+		events: {
+			'click #todo-add': 'create'
+		},
+
 		initialize: function () {
 			this.todos = new Todos();
 			this.todos.bind('reset', this.addAll, this);
+			this.todos.bind('add', this.addOne, this);
 		},
 
 		render: function () {
 			$(this.el).html(todosTemplate);
 
 			return this;
+		},
+
+		create: function (e) {
+			e.preventDefault();
+			var title = $('#todo-title').val();
+			// temp validation
+			if (!title) {
+				return false;
+			}
+
+			this.todos.create({title: title});
+			$('#todo-title').val('');
 		},
 
 		addAll: function () {
