@@ -3,22 +3,28 @@ define([
 	'underscore',
 	'backbone',
 	'transitions'
-], function ($, _, Backbone, Transitions, NavItemsView) {
+], function ($, _, Backbone, Transitions) {
 
 	'use strict';
 
 	var App = Backbone.Router.extend({
 
 		routes: {
-			'': 'home'
+			'': 'viewTodos'
 		},
 
 		initialize: function () {
-
+			this.transitions = new Transitions();
 		},
 
-		home: function () {
-			
+		viewTodos: function () {
+			var self = this;
+
+			require(['views/todosView'], function (TodosView) {
+				var todosView = new TodosView();
+
+				self.transitions.alpha(todosView.render().el);
+			});
 		}
 
 	});
