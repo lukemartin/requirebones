@@ -31,7 +31,7 @@ define([
 
 				self.transitions.alpha(homeMainView.render().el, function () {
 					var bob = new Transitions($('h1'));
-					bob.slide('Welcome!');
+					//bob.slide('Welcome!');
 				});
 			});
 			this.navItemsView.select('home');

@@ -9,8 +9,8 @@ define([
 		$el = $el || $('#content');
 
 		function alpha(html, callback) {
-			$el.fadeOut(125, function () {
-				$(this).html(html).fadeIn(125, function () {
+			$el.fadeOut(250, function () {
+				$(this).html(html).fadeIn(250, function () {
 					if (typeof callback === 'function') {
 						callback();
 					}
@@ -19,8 +19,8 @@ define([
 		}
 
 		function slide(html, callback) {
-			$el.slideUp(125, function () {
-				$(this).html(html).slideDown(125, function () {
+			$el.slideUp(250, function () {
+				$(this).html(html).slideDown(250, function () {
 					if (typeof callback === 'function') {
 						callback();
 					}

@@ -10,13 +10,19 @@ define([
 
 	var HomeMainView = Backbone.View.extend({
 
+		events: {
+			//'click #add-contact': 'addContactHandler'
+		},
+
 		initialize: function () {
 			console.log('home main view init');
+			//_.bindAll(this, 'addContactHandler', 'addContact');
 		},
 
 		render: function () {
-			var contactsList = new ContactsListView();
-			$(this.el).html(homeMainTemplate).append(contactsList.render().el);
+			this.contactsList = new ContactsListView();
+
+			$(this.el).html(homeMainTemplate).append(this.contactsList.render().el);
 			return this;
 		}
 	});

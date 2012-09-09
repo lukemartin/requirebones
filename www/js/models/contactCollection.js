@@ -11,6 +11,7 @@ define([
 		url: '/api/contacts',
 
 		initialize: function () {
+			this.fetch();
 			/*
 			this.fetch({
 				success: function (data) {
