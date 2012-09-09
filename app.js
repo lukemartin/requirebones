@@ -25,16 +25,7 @@
 	// Schema
 	var Schema = mongoose.Schema;
 
-	var Contact = new Schema({
-		name: { type: String, required: true },
-		phone: String,
-		client: Boolean,
-		supplier: Boolean,
-		comments: String,
-		modified: { type: Date, default: Date.now }
-	});
-
-	var ContactModel = mongoose.model('Contact', Contact);
+	
 
 	// Routes
 	app.get('/api', function (req, res) {
