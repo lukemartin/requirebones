@@ -10,12 +10,14 @@ define([
 
 	var TodoView = Backbone.View.extend({
 		tagName: 'li',
-		
+
 		initialize: function () {
 		},
 
 		render: function () {
-			$(this.el).html(todoTemplate);
+			var template = Handlebars.compile(todoTemplate);
+
+			$(this.el).html(template(this.model.toJSON()));
 
 			return this;
 		}
