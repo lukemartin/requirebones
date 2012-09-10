@@ -10,6 +10,9 @@ require.config({
 		},
 		'bootstrap': {
 			deps: ['jquery']
+		},
+		'handlebars': {
+			exports: 'Handlebars'
 		}
 	},
 	paths: {
@@ -17,6 +20,7 @@ require.config({
 		underscore: 'lib/underscore',
 		backbone: 'lib/backbone',
 		bootstrap: 'lib/bootstrap',
+		handlebars: 'lib/handlebars',
 		text: 'lib/text',
 		transitions: 'lib/transitions',
 		templates: '../templates'

@@ -25,45 +25,40 @@
 	// Schema
 	var Schema = mongoose.Schema;
 
-	var Contact = new Schema({
-		name: { type: String, required: true },
-		phone: String,
-		client: Boolean,
-		supplier: Boolean,
-		comments: String,
+	var Todo = new Schema({
+		title: { type: String, required: true },
+		complete: { type: Boolean, default: false },
+		destroyed: { type: Boolean, default: false },
 		modified: { type: Date, default: Date.now }
 	});
 
-	var ContactModel = mongoose.model('Contact', Contact);
+	var TodoModel = mongoose.model('Todo', Todo);
 
 	// Routes
 	app.get('/api', function (req, res) {
 		res.send('API is running');
 	});
 
-	app.get('/api/contacts', function (req, res) {
-		return ContactModel.find(function (err, contacts) {
+	app.get('/api/todos', function (req, res) {
+		return TodoModel.find(function (err, todos) {
 			if (!err) {
-				return res.send(contacts);
+				return res.send(todos);
 			} else {
 				return console.log(err);
 			}
 		});
 	});
 
-	app.post('/api/contacts', function (req, res) {
-		var contact;
+	app.post('/api/todos', function (req, res) {
+		var todo;
 		console.log("POST: ");
 		console.log(req.body);
-		contact = new ContactModel({
-			name: req.body.name,
-			phone: req.body.phone,
-			client: req.body.client,
-			supplier: req.body.supplier,
-			comments: req.body.comments
+		todo = new TodoModel({
+			title: req.body.title,
+			complete: req.body.complete
 		});
 
-		contact.save(function (err) {
+		todo.save(function (err) {
 			if (!err) {
 				return console.log('created');
 			} else {
@@ -71,7 +66,18 @@
 			}
 		});
 
-		return res.send(contact);
+		return res.send(todo);
+	});
+
+	app.delete('/api/todos/:id', function (req, res) {
+		return TodoModel.findById(req.params.id, function (err, todo) {
+			return todo.remove(function (err) {
+				if (!err) {
+					console.log('removed');
+					return res.send('');
+				}
+			});
+		});
 	});
 
 	app.listen(3000);
